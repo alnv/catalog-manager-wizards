@@ -8,6 +8,6 @@ array_insert( $GLOBALS['TL_DCA']['tl_catalog']['list']['operations'], 1, [
 
         'label' => &$GLOBALS['TL_LANG']['tl_catalog']['editWizards'],
         'href' => 'table=tl_catalog_wizards',
-        'icon' => 'edit.gif'
+        'icon' => '/system/modules/catalog-manager-wizards/assets/wizard.svg'
     ],
 ]);
