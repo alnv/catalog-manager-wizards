@@ -1,0 +1,27 @@
+<?php
+
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['new'] = [ 'Create new wizard', 'Here you can create new wizard.' ];
+
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['wizard_settings'] = 'Wizard settings';
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['general_legend'] = 'General settings';
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['invisible_legend'] = 'Visibility settings';
+
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['name'] = [ 'Name', 'Please enter your wizard name.' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['type'] = [ 'Wizard-Typ', 'Please select a wizard type.' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['invisible'] = [ 'Hide', 'Here you can hide the wizard.' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['executeTable'] = [ 'Executive table', 'Please select the executing table.' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['isAlias'] = [ 'Convert to alias', 'Here you can convert the value to alias.' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['destinationTable'] = [ 'Destination table', 'Please select a destination table.' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['destinationField'] = [ 'Destination column', 'Please select a destination column.' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['template'] = [ 'Template', 'Here you can generate the field value dynamically. You can access the field values ​​via simple tokens, eg ##my_field## ##my_other_field##' ];
+
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['edit'] = [ 'Edit wizard', 'Edit wizard ID "%s".' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['copy'] = [ 'Copy wizard', 'Copy wizard ID "%s".' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['delete'] = [ 'Delete wizard', 'Delete wizard ID "%s".' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['toggle'] = [ 'Hide wizard', 'Disable or Enable wizard ID "%s".' ];
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['show'] = [ 'Show wizard', 'Show the details of wizard ID "%s".' ];
+
+$GLOBALS['TL_LANG']['tl_catalog_wizards']['reference']['type'] = [
+
+    'field' => 'Field wizard',
+];
