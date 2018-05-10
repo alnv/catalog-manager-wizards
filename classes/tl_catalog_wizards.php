@@ -21,7 +21,7 @@ class tl_catalog_wizards extends \Backend {
 
     public function getFields( \DataContainer $dc ) {
 
-        $strTable = $dc->activeRecord->table;
+        $strTable = $dc->activeRecord->destinationTable;
 
         if ( $strTable && $this->Database->tableExists( $strTable ) ) {
 
