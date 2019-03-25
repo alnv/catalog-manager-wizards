@@ -42,7 +42,7 @@ class AutoFieldWizard extends CatalogController {
             ->prepare( 'SELECT * FROM tl_catalog_wizards WHERE `executeTable` = ?' )
             ->execute( $arrCatalog['tablename'] );
 
-        if ( !$objWizards->numRows ) return null;
+        if ( !$objWizards->numRows ) return $arrValues;
 
         $arrWizard = $objWizards->row();
         $arrValues[ $arrWizard['destinationField'] ] = $this->render( $arrValues, $arrCatalog['tablename'], $arrWizard );

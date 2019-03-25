@@ -11,6 +11,7 @@ class BackendWizardCallbacks extends \Backend {
 
         $objWizards = $this->Database
             ->prepare( 'SELECT * FROM tl_catalog_wizards WHERE `executeTable` = ?' )
+            ->limit(1)
             ->execute( $strTable );
 
         if ( !$objWizards->numRows ) return null;
