@@ -6,6 +6,7 @@ use CatalogManager\Toolkit as Toolkit;
 use CatalogManager\CatalogController as CatalogController;
 use CatalogManager\CatalogFieldBuilder as CatalogFieldBuilder;
 
+
 class AutoFieldWizard extends CatalogController {
 
 
@@ -36,7 +37,7 @@ class AutoFieldWizard extends CatalogController {
 
         $this->import( 'Database' );
 
-        if ( !$this->Database->tableExists( 'tl_catalog_wizards' ) ) return null;
+        if ( !$this->Database->tableExists( 'tl_catalog_wizards' ) ) return $arrValues;
 
         $objWizards = $this->Database
             ->prepare( 'SELECT * FROM tl_catalog_wizards WHERE `executeTable` = ?' )

@@ -2,7 +2,7 @@
 
 namespace CatalogManager\Wizards;
 
-class Publisher {
+class Publisher extends \Frontend {
 
 
     public function onCreate( $arrData, $objModule ) {
@@ -22,10 +22,15 @@ class Publisher {
 
         foreach ( $arrPublishMap as $arrMap ) {
 
+            if ( \CatalogManager\Toolkit::isEmpty( $arrData['row'][ $arrMap['key'] ] ) ) {
+
+                continue;
+            }
+
             $arrPublish[ $arrMap['value'] ] = $arrData['row'][ $arrMap['key'] ];
         }
 
-        $arrPublish['rid'] = $arrData['id'];
+        $arrPublish['rid'] = $arrData['row']['id'];
         $arrPublish['rtable'] = $arrData['table'];
         $arrPublish['tstamp'] = time();
 
@@ -40,7 +45,14 @@ class Publisher {
             return null;
         }
 
-        if ( !$objModule->catalogUsePublisher || !$arrData['row']['published'] ) {
+        if ( !$objModule->catalogUsePublisher ) {
+
+            return null;
+        }
+
+        if ( !$arrData['row']['published'] ) {
+
+            $this->onDelete( $arrData, $objModule );
 
             return null;
         }
@@ -50,10 +62,15 @@ class Publisher {
 
         foreach ( $arrPublishMap as $arrMap ) {
 
+            if ( \CatalogManager\Toolkit::isEmpty( $arrData['row'][ $arrMap['key'] ] ) ) {
+
+                continue;
+            }
+
             $arrPublish[ $arrMap['value'] ] = $arrData['row'][ $arrMap['key'] ];
         }
 
-        $arrPublish['rid'] = $arrData['id'];
+        $arrPublish['rid'] = $arrData['row']['id'];
         $arrPublish['rtable'] = $arrData['table'];
         $arrPublish['tstamp'] = time();
 
@@ -73,15 +90,13 @@ class Publisher {
             return null;
         }
 
-        $objDatabase = \Database::getInstance();
-        $objDatabase->prepare( 'DELETE FROM ' . $objModule->catalogPublisherTable . ' WHERE rid = ?' )->execute( $arrData['id'] );
+        $this->Database->prepare( 'DELETE FROM ' . $objModule->catalogPublisherTable . ' WHERE rid = ?' )->execute( $arrData['id'] );
     }
 
 
     protected function publish( $arrPublish, $strDestinationTable ) {
 
-        $objDatabase = \Database::getInstance();
-        $objEntity = $objDatabase->prepare('SELECT * FROM ' . $strDestinationTable . ' WHERE rid = ?' )->limit(1)->execute( $arrPublish['rid'] );
+        $objEntity = $this->Database->prepare('SELECT * FROM ' . $strDestinationTable . ' WHERE rid = ?' )->limit(1)->execute( $arrPublish['rid'] );
 
         if ( !$arrPublish['alias'] ) {
 
@@ -90,12 +105,12 @@ class Publisher {
 
         if ( $objEntity->numRows ) {
 
-            $objDatabase->prepare( 'UPDATE ' . $strDestinationTable . ' %s WHERE rid = ?' )->set( $arrPublish )->execute( $arrPublish['rid'] );
+            $this->Database->prepare( 'UPDATE ' . $strDestinationTable . ' %s WHERE rid = ?' )->set( $arrPublish )->execute( $arrPublish['rid'] );
         }
 
         else {
 
-            $objDatabase->prepare( 'INSERT INTO ' . $strDestinationTable . ' %s' )->set( $arrPublish )->execute();
+            $this->Database->prepare( 'INSERT INTO ' . $strDestinationTable . ' %s' )->set( $arrPublish )->execute();
         }
     }
 }
